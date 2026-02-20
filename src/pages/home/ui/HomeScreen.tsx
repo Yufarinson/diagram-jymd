@@ -2,7 +2,6 @@ import { Play, Database, Upload, ArrowRight, FileJson } from 'lucide-react';
 import { getExerciseById, EXERCISES } from '../../../shared/data/exercises';
 import { useDiagramStore } from '../../../entities/store/diagramStore';
 import type { AppNode, AppEdge } from '../../../shared/model/types';
-import type { Node as XYFlowNode } from '@xyflow/react';
 
 export function HomeScreen() {
   const { setAppMode, setNodes, setEdges } = useDiagramStore();
@@ -18,7 +17,7 @@ export function HomeScreen() {
     if (!exercise) return;
     
     // Auto-detect mode of the template
-    const nodes = exercise.nodes as XYFlowNode[];
+    const nodes = exercise.nodes;
     const hasConceptualNodes = nodes.some((n) => ['entity', 'attribute', 'relationship'].includes(n.type ?? ''));
     const mode = hasConceptualNodes ? 'conceptual' : 'relational';
     

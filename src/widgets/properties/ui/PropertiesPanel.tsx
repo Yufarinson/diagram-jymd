@@ -160,7 +160,7 @@ function EdgePropsForm({ edge }: { edge: AppEdge }) {
               <span className="text-slate-600">(Izquierda)</span>
             </label>
             <select 
-              value={data.sourceCardinality ?? '1'} 
+              value={data.sourceCardinality} 
               onChange={handleSourceChange}
               className="bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 transition-all cursor-pointer hover:border-slate-600"
             >
@@ -177,7 +177,7 @@ function EdgePropsForm({ edge }: { edge: AppEdge }) {
               <span className="text-slate-600">(Derecha)</span>
             </label>
             <select 
-              value={data.targetCardinality ?? 'N'} 
+              value={data.targetCardinality} 
               onChange={handleTargetChange}
               className="bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 transition-all cursor-pointer hover:border-slate-600"
             >
@@ -212,7 +212,7 @@ function ConceptualPropsForm({ node }: { node: AppNode }) {
         <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">Etiqueta</label>
         <input 
           type="text" 
-          value={String((data as any).label ?? "")} 
+          value={(data as { label?: string }).label ?? ""} 
           onChange={handleLabelChange}
           className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-mono"
         />
@@ -320,12 +320,12 @@ export function PropertiesPanel() {
           <NodePropsForm node={selectedNode} />
         )}
 
-        {selectedNode && ['entity', 'attribute', 'relationship'].includes(String(selectedNode.type ?? "")) && (
+        {selectedNode && ['entity', 'attribute', 'relationship'].includes(selectedNode.type) && (
           <ConceptualPropsForm node={selectedNode} />
         )}
         
         {selectedEdge && (
-          <EdgePropsForm edge={selectedEdge as AppEdge} />
+          <EdgePropsForm edge={selectedEdge} />
         )}
       </div>
       

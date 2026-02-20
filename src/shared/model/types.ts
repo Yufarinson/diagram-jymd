@@ -50,4 +50,6 @@ export type AppNode =
   | Node<AttributeData, "attribute">
   | Node<RelationshipData, "relationship">;
 
-export type AppEdge = Edge<RelationEdgeData, "relation"> | Edge<any, "default">;
+export type AppEdge =
+  | Edge<RelationEdgeData, "relation">
+  | Edge<Record<string, unknown>, "default">;

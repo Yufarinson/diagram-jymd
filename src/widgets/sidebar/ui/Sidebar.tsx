@@ -17,7 +17,7 @@ export function Sidebar() {
 
   const spawnNode = (type: AppNode['type'], data: Record<string, unknown> = {}) => {
     const newNode = {
-      id: `${type}-${Date.now()}`,
+      id: `${type}-${Date.now().toString()}`,
       type,
       position: { x: Math.random() * 400, y: Math.random() * 400 },
       data: { label: `Nuevo ${type}`, ...data },

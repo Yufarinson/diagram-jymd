@@ -105,8 +105,8 @@ export function EditorPage() {
           <ReactFlow
             nodes={nodes as Node[]}
             edges={edges as Edge[]}
-            onNodesChange={onNodesChange as any}
-            onEdgesChange={onEdgesChange as any}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onNodeClick={handleNodeClick}
             onEdgeClick={handleEdgeClick}

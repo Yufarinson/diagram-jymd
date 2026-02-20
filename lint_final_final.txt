@@ -1,0 +1,10 @@
+
+> diagramjymd@0.0.0 lint
+> eslint .
+
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\properties\ui\PropertiesPanel.tsx
+  56:30  warning  Do not use item index in the array as its key  react-x/no-array-index-key
+
+Ô£û 1 problem (0 errors, 1 warning)
+

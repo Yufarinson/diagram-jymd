@@ -59,13 +59,13 @@ export const useDiagramStore = create<DiagramState>((set, get) => ({
 
   onNodesChange: (changes) => {
     set({
-      nodes: applyNodeChanges(changes, get().nodes) as AppNode[],
+      nodes: applyNodeChanges(changes, get().nodes),
     });
   },
 
   onEdgesChange: (changes) => {
     set({
-      edges: applyEdgeChanges(changes, get().edges) as AppEdge[],
+      edges: applyEdgeChanges(changes, get().edges),
     });
   },
 
@@ -94,7 +94,7 @@ export const useDiagramStore = create<DiagramState>((set, get) => ({
     } as AppEdge;
 
     set({
-      edges: addEdge(newEdge, get().edges) as AppEdge[],
+      edges: addEdge(newEdge, get().edges),
     });
   },
 
