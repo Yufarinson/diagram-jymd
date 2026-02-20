@@ -1,0 +1,78 @@
+
+> diagramjymd@0.0.0 lint
+> eslint .
+
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\nodes\ui\CollectionNode.tsx
+  24:34  error  Invalid type "number" of template literal expression  @typescript-eslint/restrict-template-expressions
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\lib\nosqlConverter.ts
+   40:22  error  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+   64:9   error  Unsafe assignment of an `any` value                                                                        @typescript-eslint/no-unsafe-assignment
+  110:13  error  Unsafe assignment of an `any` value                                                                        @typescript-eslint/no-unsafe-assignment
+  110:38  error  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  110:44  error  Unsafe member access .targetCardinality on an `any` value                                                  @typescript-eslint/no-unsafe-member-access
+  110:62  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator  @typescript-eslint/prefer-nullish-coalescing
+  111:13  error  Unsafe assignment of an `any` value                                                                        @typescript-eslint/no-unsafe-assignment
+  111:38  error  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  111:44  error  Unsafe member access .targetCardinality on an `any` value                                                  @typescript-eslint/no-unsafe-member-access
+  111:62  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator  @typescript-eslint/prefer-nullish-coalescing
+  113:60  error  Forbidden non-null assertion                                                                               @typescript-eslint/no-non-null-assertion
+  114:60  error  Forbidden non-null assertion                                                                               @typescript-eslint/no-non-null-assertion
+  125:20  error  Invalid type "any" of template literal expression                                                          @typescript-eslint/restrict-template-expressions
+  125:20  error  Unsafe call of a type that could not be resolved                                                           @typescript-eslint/no-unsafe-call
+  131:20  error  Invalid type "any" of template literal expression                                                          @typescript-eslint/restrict-template-expressions
+  131:20  error  Unsafe call of a type that could not be resolved                                                           @typescript-eslint/no-unsafe-call
+  142:20  error  Invalid type "any" of template literal expression                                                          @typescript-eslint/restrict-template-expressions
+  142:20  error  Unsafe call of a type that could not be resolved                                                           @typescript-eslint/no-unsafe-call
+  147:20  error  Invalid type "any" of template literal expression                                                          @typescript-eslint/restrict-template-expressions
+  147:20  error  Unsafe call of a type that could not be resolved                                                           @typescript-eslint/no-unsafe-call
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\model\useTransform.ts
+  13:45  error    Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. The inferred dependencies did not match the manually specified dependencies, which could cause the value to change more or less frequently than expected. The inferred dependency was `setAppMode`, but the source dependencies were [nodes, edges, setNodes, setEdges, fitView]. Inferred different dependency than source.
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\model\useTransform.ts:13:45
+  11 |   const { fitView } = useReactFlow();
+  12 |
+> 13 |   const transformToRelational = useCallback(() => {
+     |                                             ^^^^^^^
+> 14 |     const { newNodes, newEdges } = convertToRelational(
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |       nodes as Node[],
+     ÔÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 36 |     }, 50);
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 37 |   }, [nodes, edges, setNodes, setEdges, fitView]);
+     | ^^^^ Could not preserve existing manual memoization
+  38 |
+  39 |   const transformToNoSQL = useCallback(() => {
+  40 |     const { newNodes, newEdges } = convertToNoSQL(  react-hooks/preserve-manual-memoization
+  37:6   warning  React Hook useCallback has a missing dependency: 'setAppMode'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      react-hooks/exhaustive-deps
+  51:14  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unnecessary-type-assertion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\properties\ui\PropertiesPanel.tsx
+   56:30  warning  Do not use item index in the array as its key                                                                       react-x/no-array-index-key
+  299:28  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  305:28  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  323:30  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  332:51  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  333:41  error    Invalid type "number" of template literal expression                                                                @typescript-eslint/restrict-template-expressions
+  333:55  error    Invalid type "number" of template literal expression                                                                @typescript-eslint/restrict-template-expressions
+  350:40  error    Forbidden non-null assertion                                                                                        @typescript-eslint/no-non-null-assertion
+  355:37  error    Forbidden non-null assertion                                                                                        @typescript-eslint/no-non-null-assertion
+  372:16  error    Invalid type "number" of template literal expression                                                                @typescript-eslint/restrict-template-expressions
+  398:28  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  408:30  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  435:34  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  436:33  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\sidebar\ui\Sidebar.tsx
+  40:37  error  Invalid type "number" of template literal expression  @typescript-eslint/restrict-template-expressions
+  53:37  error  Invalid type "number" of template literal expression  @typescript-eslint/restrict-template-expressions
+
+Ô£û 40 problems (38 errors, 2 warnings)
+  8 errors and 0 warnings potentially fixable with the `--fix` option.
+

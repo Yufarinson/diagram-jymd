@@ -1,7 +1,7 @@
 import { type Node, type Edge } from "@xyflow/react";
 
 // Common Types
-export type AppMode = "home" | "conceptual" | "relational";
+export type AppMode = "home" | "conceptual" | "relational" | "nosql";
 
 // Node Data Interfaces
 export interface ColumnDef {
@@ -43,12 +43,41 @@ export interface RelationEdgeData {
   [key: string]: unknown;
 }
 
+// NoSQL Types
+export type NoSQLFieldType =
+  | "string"
+  | "number"
+  | "boolean"
+  | "timestamp"
+  | "geopoint"
+  | "map"
+  | "array"
+  | "reference"
+  | "null";
+
+export interface NoSQLFieldDef {
+  id: string;
+  name: string;
+  type: NoSQLFieldType;
+  isId?: boolean;
+  fields?: NoSQLFieldDef[]; // Recursion for Maps and Arrays
+}
+
+export interface DocumentData {
+  collectionName: string;
+  fields: NoSQLFieldDef[];
+  isSubcollection?: boolean;
+  parentPath?: string; // For Firestore subcollections
+  [key: string]: unknown;
+}
+
 // Strictly Typed Nodes
 export type AppNode =
   | Node<TableData, "table">
   | Node<EntityData, "entity">
   | Node<AttributeData, "attribute">
-  | Node<RelationshipData, "relationship">;
+  | Node<RelationshipData, "relationship">
+  | Node<DocumentData, "collection">;
 
 export type AppEdge =
   | Edge<RelationEdgeData, "relation">

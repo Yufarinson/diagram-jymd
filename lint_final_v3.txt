@@ -1,0 +1,13 @@
+
+> diagramjymd@0.0.0 lint
+> eslint .
+
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\nodes\ui\CollectionNode.tsx
+  24:41  error  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\properties\ui\PropertiesPanel.tsx
+  56:30  warning  Do not use item index in the array as its key  react-x/no-array-index-key
+
+Ô£û 2 problems (1 error, 1 warning)
+

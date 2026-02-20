@@ -8,9 +8,9 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
 const nodeWidth = 320;
 const nodeHeight = 250;
 
-export const getLayoutedElements = (
-  nodes: Node[],
-  edges: Edge[],
+export const getLayoutedElements = <T extends Node, E extends Edge>(
+  nodes: T[],
+  edges: E[],
   direction = "LR",
 ) => {
   const isHorizontal = direction === "LR";
@@ -41,8 +41,8 @@ export const getLayoutedElements = (
         x: nodeWithPosition.x - nodeWidth / 2,
         y: nodeWithPosition.y - nodeHeight / 2,
       },
-    } as Node;
+    };
   });
 
-  return { nodes: newNodes, edges };
+  return { nodes: newNodes as T[], edges };
 };

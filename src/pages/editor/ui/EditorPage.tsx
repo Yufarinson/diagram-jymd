@@ -16,6 +16,7 @@ import { EntityNode } from '../../../entities/nodes/ui/EntityNode';
 import { AttributeNode } from '../../../entities/nodes/ui/AttributeNode';
 import { RelationshipNode } from '../../../entities/nodes/ui/RelationshipNode';
 import { TableNode } from '../../../entities/nodes/ui/TableNode';
+import { CollectionNode } from '../../../entities/nodes/ui/CollectionNode';
 import { RelationEdge } from '../../../entities/edges/ui/RelationEdge';
 
 import { Home, Trash2 } from 'lucide-react';
@@ -25,6 +26,7 @@ const nodeTypes = {
   attribute: AttributeNode,
   relationship: RelationshipNode,
   table: TableNode,
+  collection: CollectionNode,
 };
 
 const edgeTypes = {

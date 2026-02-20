@@ -1,0 +1,34 @@
+
+> diagramjymd@0.0.0 lint
+> eslint .
+
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\nodes\ui\CollectionNode.tsx
+  24:34  error  Invalid type "number" of template literal expression                          @typescript-eslint/restrict-template-expressions
+  43:29  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  49:29  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\lib\nosqlConverter.ts
+   25:35  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+   45:26  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+   59:18  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+   60:15  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+   69:21  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+   82:11  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  127:23  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  130:23  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  137:22  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  143:22  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  154:22  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+  159:22  error  Passing a string to String() does not change the type or value of the string  @typescript-eslint/no-unnecessary-type-conversion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\model\useTransform.ts
+  51:14  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\properties\ui\PropertiesPanel.tsx
+   56:30  warning  Do not use item index in the array as its key                                                              react-x/no-array-index-key
+  332:51  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator  @typescript-eslint/prefer-nullish-coalescing
+
+Ô£û 18 problems (17 errors, 1 warning)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

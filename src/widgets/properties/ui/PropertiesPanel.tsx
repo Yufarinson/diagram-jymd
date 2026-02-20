@@ -1,5 +1,5 @@
-import { Trash2, Plus, X, ArrowRightLeft } from 'lucide-react';
-import type { ColumnDef, TableData, EntityData, AttributeData, RelationshipData, RelationEdgeData, AppNode, AppEdge } from '../../../shared/model/types';
+import { Trash2, Plus, X, ArrowRightLeft, Layers, Settings } from 'lucide-react';
+import type { ColumnDef, TableData, EntityData, AttributeData, RelationshipData, RelationEdgeData, AppNode, AppEdge, DocumentData, NoSQLFieldDef, NoSQLFieldType } from '../../../shared/model/types';
 import { useDiagramStore } from '../../../entities/store/diagramStore';
 
 function NodePropsForm({ node }: { node: AppNode }) {
@@ -277,6 +277,177 @@ function ConceptualPropsForm({ node }: { node: AppNode }) {
   );
 }
 
+function NoSQLFieldItem({ 
+  field, 
+  onUpdate, 
+  onRemove, 
+  depth = 0 
+}: { 
+  field: NoSQLFieldDef; 
+  onUpdate: (updates: Partial<NoSQLFieldDef>) => void;
+  onRemove: () => void;
+  depth?: number;
+}) {
+  const types: NoSQLFieldType[] = ["string", "number", "boolean", "timestamp", "geopoint", "map", "array", "reference", "null"];
+
+  return (
+    <div className="flex flex-col gap-2 p-3 bg-slate-900/50 border border-slate-700/30 rounded-xl group/field">
+      <div className="flex items-center gap-2">
+        <input 
+          type="text" 
+          value={field.name}
+          onChange={(e) => { onUpdate({ name: e.target.value }); }}
+          className="flex-1 bg-slate-950 border border-slate-700 rounded-md px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 font-mono"
+          placeholder="nombre_campo"
+        />
+        <select 
+          value={field.type}
+          onChange={(e) => { onUpdate({ type: e.target.value as NoSQLFieldType }); }}
+          className="bg-slate-950 border border-slate-700 rounded-md px-1 py-1 text-[10px] text-slate-400 focus:outline-none focus:border-emerald-500 uppercase font-bold"
+        >
+          {types.map(t => <option key={t} value={t}>{t}</option>)}
+        </select>
+        <button 
+          onClick={onRemove}
+          className="p-1 text-slate-600 hover:text-red-400 transition-colors opacity-0 group-hover/field:opacity-100"
+        >
+          <X className="w-3.5 h-3.5" />
+        </button>
+      </div>
+      
+      <div className="flex items-center gap-3 pl-1">
+        <label className="flex items-center gap-1.5 cursor-pointer group">
+          <input 
+            type="checkbox" 
+            checked={field.isId} 
+            onChange={(e) => { onUpdate({ isId: e.target.checked }); }}
+            className="w-3 h-3 rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+          />
+          <span className="text-[10px] text-slate-500 group-hover:text-slate-400">¿Es ID?</span>
+        </label>
+        
+        {(field.type === 'map' || field.type === 'array') && (
+          <button 
+            onClick={() => {
+              const newFields = [...(field.fields ?? [])];
+              newFields.push({ id: `f-${String(Date.now())}-${String(Math.random())}`, name: 'nuevo_campo', type: 'string' });
+              onUpdate({ fields: newFields });
+            }}
+            className="text-[10px] text-emerald-500 hover:text-emerald-400 flex items-center gap-1 ml-auto font-bold"
+          >
+            <Plus className="w-3 h-3" /> SUB-CAMPO
+          </button>
+        )}
+      </div>
+
+      {field.fields && field.fields.length > 0 && (
+        <div className="flex flex-col gap-2 pl-3 border-l border-slate-800/80 mt-1 ml-1">
+          {field.fields.map((f, i) => (
+            <NoSQLFieldItem 
+               key={f.id}
+               field={f}
+               onUpdate={(u) => {
+                 const newFields = field.fields ? [...field.fields] : [];
+                 newFields[i] = { ...newFields[i], ...u };
+                 onUpdate({ fields: newFields });
+               }}
+               onRemove={() => {
+                 const newFields = field.fields ? field.fields.filter((_, idx) => idx !== i) : [];
+                 onUpdate({ fields: newFields });
+               }}
+               depth={depth + 1}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NoSQLPropsForm({ node }: { node: AppNode }) {
+  const { updateNodeData } = useDiagramStore();
+  const data = node.data as DocumentData;
+
+  const handleAddField = () => {
+    const newField: NoSQLFieldDef = {
+      id: `f-${String(Date.now())}`,
+      name: 'nuevo_campo',
+      type: 'string',
+    };
+    updateNodeData(node.id, { fields: [...data.fields, newField] });
+  };
+
+  const handleUpdateField = (index: number, updates: Partial<NoSQLFieldDef>) => {
+    const newFields = [...data.fields];
+    newFields[index] = { ...newFields[index], ...updates };
+    updateNodeData(node.id, { fields: newFields });
+  };
+
+  const handleRemoveField = (index: number) => {
+    updateNodeData(node.id, { fields: data.fields.filter((_, i) => i !== index) });
+  };
+
+  return (
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+          <Settings className="w-3.5 h-3.5" /> Nombre de Colección
+        </label>
+        <input 
+          type="text" 
+          value={data.collectionName} 
+          onChange={(e) => { updateNodeData(node.id, { collectionName: e.target.value }); }}
+          className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 transition-all font-mono"
+        />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <label className="flex items-center gap-2 cursor-pointer group w-fit">
+          <input 
+            type="checkbox" 
+            checked={data.isSubcollection} 
+            onChange={(e) => { updateNodeData(node.id, { isSubcollection: e.target.checked }); }}
+            className="w-4 h-4 rounded border-slate-700 bg-slate-950 text-indigo-500 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+          />
+          <span className="text-xs font-bold text-slate-400 group-hover:text-slate-300 uppercase tracking-wider">Sub-colección (Firestore)</span>
+        </label>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center justify-between border-b border-slate-800/50 pb-2">
+          <label className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+            <Layers className="w-3.5 h-3.5" /> Esquema de Campos
+          </label>
+          <button 
+            onClick={handleAddField}
+            className="p-1.5 bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20 rounded-md transition-all border border-emerald-500/20"
+            title="Añadir Campo"
+          >
+            <Plus className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-3 pt-1">
+          {data.fields.length > 0 ? (
+            data.fields.map((field, index) => (
+              <NoSQLFieldItem 
+                key={field.id}
+                field={field}
+                onUpdate={(u) => { handleUpdateField(index, u); }}
+                onRemove={() => { handleRemoveField(index); }}
+              />
+            ))
+          ) : (
+            <div className="py-4 text-center border-2 border-dashed border-slate-800/50 rounded-xl">
+              <p className="text-[10px] text-slate-600 italic">No hay campos definidos</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function PropertiesPanel() {
   const { 
     nodes, 
@@ -305,6 +476,7 @@ export function PropertiesPanel() {
         <h2 className="text-slate-200 font-semibold flex items-center gap-2">
           Propiedades 
           {selectedNode && selectedNode.type === 'table' && <span className="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30">Tabla</span>}
+          {selectedNode && selectedNode.type === 'collection' && <span className="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">Colección</span>}
           {selectedNode && selectedNode.type === 'entity' && <span className="text-xs bg-fuchsia-500/20 text-fuchsia-300 px-2 py-0.5 rounded-full border border-fuchsia-500/30">Entidad</span>}
           {selectedNode && selectedNode.type === 'attribute' && <span className="text-xs bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full border border-sky-500/30">Atributo</span>}
           {selectedNode && selectedNode.type === 'relationship' && <span className="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">Relación</span>}
@@ -322,6 +494,10 @@ export function PropertiesPanel() {
 
         {selectedNode && ['entity', 'attribute', 'relationship'].includes(selectedNode.type) && (
           <ConceptualPropsForm node={selectedNode} />
+        )}
+
+        {selectedNode && selectedNode.type === 'collection' && (
+          <NoSQLPropsForm node={selectedNode} />
         )}
         
         {selectedEdge && (

@@ -3,6 +3,9 @@ import type {
   EntityData,
   AttributeData,
   RelationEdgeData,
+  TableData,
+  AppNode,
+  AppEdge,
 } from "../../../shared/model/types";
 
 // Interfaces for our mapping logic
@@ -24,9 +27,9 @@ interface TableDef {
 export function convertToRelational(
   nodes: Node[],
   edges: Edge[],
-): { newNodes: Node[]; newEdges: Edge[] } {
-  const newNodes: Node[] = [];
-  const newEdges: Edge[] = [];
+): { newNodes: AppNode[]; newEdges: AppEdge[] } {
+  const newNodes: AppNode[] = [];
+  const newEdges: AppEdge[] = [];
 
   // 1. Encontrar todas las Entidades (se convertirán en Tablas)
   const entities = nodes.filter((n) => n.type === "entity");
@@ -188,12 +191,20 @@ export function convertToRelational(
       position: { x: tDef.x, y: tDef.y },
       data: {
         tableName: tDef.tableName,
-        columns: tDef.columns,
-      },
-    });
+        columns: tDef.columns as ITableColumn[],
+      } as TableData,
+    } as AppNode);
   });
 
   return { newNodes, newEdges };
+}
+
+// Internal interface just for the data mapping
+interface ITableColumn {
+  name: string;
+  type: string;
+  isPk?: boolean;
+  isFk?: boolean;
 }
 
 function createRelationEdge(
@@ -201,15 +212,15 @@ function createRelationEdge(
   targetId: string,
   sourceCard: string,
   targetCard: string,
-): Edge {
+): AppEdge {
   return {
     id: `e-${sourceId}-${targetId}-${String(Date.now())}`,
     source: sourceId,
     target: targetId,
     type: "relation",
-    sourceHandle: `source-${sourceId}`, // Simplificado para que el custom edge no falle (aunque requerirá layout)
+    sourceHandle: `source-${sourceId}`,
     targetHandle: `target-${targetId}`,
     data: { sourceCardinality: sourceCard, targetCardinality: targetCard },
     style: { stroke: "#4ade80", strokeWidth: 2, opacity: 0.8 },
-  };
+  } as AppEdge;
 }
