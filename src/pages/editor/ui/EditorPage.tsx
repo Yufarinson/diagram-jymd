@@ -7,6 +7,7 @@ import {
   type Edge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import type { AppNode, AppEdge } from '../../../shared/model/types';
 
 import { useDiagramStore } from '../../../entities/store/diagramStore';
 import { Sidebar } from '../../../widgets/sidebar/ui/Sidebar';
@@ -102,9 +103,9 @@ export function EditorPage() {
         <Sidebar />
 
         <main className="flex-1 relative bg-slate-950">
-          <ReactFlow
-            nodes={nodes as Node[]}
-            edges={edges as Edge[]}
+          <ReactFlow<AppNode, AppEdge>
+            nodes={nodes}
+            edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}

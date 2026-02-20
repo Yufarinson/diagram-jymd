@@ -1,0 +1,27 @@
+
+> diagramjymd@0.0.0 build
+> tsc -b && vite build
+
+src/pages/editor/ui/EditorPage.tsx(108,13): error TS2322: Type '(changes: NodeChange<AppNode>[]) => void' is not assignable to type 'OnNodesChange<Node>'.
+  Types of parameters 'changes' and 'changes' are incompatible.
+    Type 'NodeChange<Node>[]' is not assignable to type 'NodeChange<AppNode>[]'.
+      Type 'NodeChange<Node>' is not assignable to type 'NodeChange<AppNode>'.
+        Type 'NodeAddChange<Node>' is not assignable to type 'NodeChange<AppNode>'.
+          Type 'NodeAddChange<Node>' is not assignable to type 'NodeAddChange<AppNode>'.
+            Type 'Node' is not assignable to type 'AppNode'.
+              Type 'Node' is not assignable to type 'Node<RelationshipData, "relationship">'.
+                Type 'Node' is not assignable to type '{ id: string; position: XYPosition; data: RelationshipData; sourcePosition?: Position | undefined; targetPosition?: Position | undefined; ... 19 more ...; measured?: { ...; } | undefined; }'.
+                  Types of property 'data' are incompatible.
+                    Property 'label' is missing in type 'Record<string, unknown>' but required in type 'RelationshipData'.
+src/pages/editor/ui/EditorPage.tsx(109,13): error TS2322: Type '(changes: EdgeChange<AppEdge>[]) => void' is not assignable to type 'OnEdgesChange<Edge>'.
+  Types of parameters 'changes' and 'changes' are incompatible.
+    Type 'EdgeChange<Edge>[]' is not assignable to type 'EdgeChange<AppEdge>[]'.
+      Type 'EdgeChange<Edge>' is not assignable to type 'EdgeChange<AppEdge>'.
+        Type 'EdgeAddChange<Edge>' is not assignable to type 'EdgeChange<AppEdge>'.
+          Type 'EdgeAddChange<Edge>' is not assignable to type 'EdgeAddChange<AppEdge>'.
+            Type 'Edge' is not assignable to type 'AppEdge'.
+              Type 'Edge' is not assignable to type 'Edge<Record<string, unknown>, "default">'.
+                Type 'Edge' is not assignable to type 'EdgeBase<Record<string, unknown>, "default">'.
+                  Types of property 'type' are incompatible.
+                    Type 'string | undefined' is not assignable to type '"default" | undefined'.
+                      Type 'string' is not assignable to type '"default"'.
