@@ -1,20 +1,35 @@
 import { Play, Database, Upload, ArrowRight, FileJson } from 'lucide-react';
-import { EXERCISES, getExerciseById } from './exercises';
+import { getExerciseById, EXERCISES } from '../../../shared/data/exercises';
+import { useDiagramStore } from '../../../entities/store/diagramStore';
+import type { AppNode, AppEdge } from '../../../shared/model/types';
+import type { Node as XYFlowNode } from '@xyflow/react';
 
-interface HomeScreenProps {
-  onSelectMode: (mode: 'conceptual' | 'relational') => void;
-  onImport: () => void;
-  onLoadTemplate: (nodes: any[], edges: any[], mode: 'conceptual' | 'relational') => void;
-}
+export function HomeScreen() {
+  const { setAppMode, setNodes, setEdges } = useDiagramStore();
 
-export function HomeScreen({ onSelectMode, onImport, onLoadTemplate }: HomeScreenProps) {
+  const handleStartMode = (mode: 'conceptual' | 'relational') => {
+    setAppMode(mode);
+    setNodes([]);
+    setEdges([]);
+  };
+
   const handleTemplateClick = (exerciseId: string) => {
     const exercise = getExerciseById(exerciseId);
     if (!exercise) return;
     
     // Auto-detect mode of the template
-    const hasConceptualNodes = exercise.nodes.some((n: any) => ['entity', 'attribute', 'relationship'].includes(n.type));
-    onLoadTemplate(exercise.nodes, exercise.edges, hasConceptualNodes ? 'conceptual' : 'relational');
+    const nodes = exercise.nodes as XYFlowNode[];
+    const hasConceptualNodes = nodes.some((n) => ['entity', 'attribute', 'relationship'].includes(n.type ?? ''));
+    const mode = hasConceptualNodes ? 'conceptual' : 'relational';
+    
+    setAppMode(mode);
+    setNodes(exercise.nodes as AppNode[]);
+    setEdges(exercise.edges as AppEdge[]);
+  };
+
+  const handleImportClick = () => {
+    // We'll keep this as a window-level alert for now
+    alert("Función de Importar se habilitará en la siguiente fase del refactor.");
   };
 
   return (
@@ -41,7 +56,7 @@ export function HomeScreen({ onSelectMode, onImport, onLoadTemplate }: HomeScree
           
           {/* Card 1: Conceptual */}
           <button 
-            onClick={() => onSelectMode('conceptual')}
+            onClick={() => { handleStartMode('conceptual'); }}
             className="group relative flex flex-col items-start p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/20 text-left overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -61,7 +76,7 @@ export function HomeScreen({ onSelectMode, onImport, onLoadTemplate }: HomeScree
 
           {/* Card 2: Relational */}
           <button 
-            onClick={() => onSelectMode('relational')}
+            onClick={() => { handleStartMode('relational'); }}
             className="group relative flex flex-col items-start p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/20 text-left overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -91,7 +106,7 @@ export function HomeScreen({ onSelectMode, onImport, onLoadTemplate }: HomeScree
           
           <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center">
             <button 
-              onClick={onImport}
+              onClick={() => { handleImportClick(); }}
               className="px-8 py-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:bg-slate-800 hover:border-slate-500 text-slate-300 flex items-center gap-3 transition-all hover:shadow-lg justify-center group"
             >
               <Upload className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
@@ -110,7 +125,7 @@ export function HomeScreen({ onSelectMode, onImport, onLoadTemplate }: HomeScree
                 {EXERCISES.slice(1).map((ex) => (
                   <button 
                     key={ex.id}
-                    onClick={() => handleTemplateClick(ex.id)}
+                    onClick={() => { handleTemplateClick(ex.id); }}
                     className="w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-indigo-500/20 hover:text-indigo-400 border-b border-slate-700/50 last:border-0 transition-colors"
                   >
                     {ex.name}

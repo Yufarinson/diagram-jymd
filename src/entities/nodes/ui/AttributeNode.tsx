@@ -1,6 +1,7 @@
 import { Handle, Position } from '@xyflow/react';
+import type { AttributeData } from '../../../shared/model/types';
 
-export function AttributeNode({ data, selected }: { data: any, selected: boolean }) {
+export function AttributeNode({ data, selected }: { data: AttributeData, selected: boolean }) {
   return (
     <div className={`
       relative min-w-[100px] px-4 py-2 bg-slate-900 border transition-all flex items-center justify-center

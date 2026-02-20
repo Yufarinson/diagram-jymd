@@ -1,4 +1,9 @@
 import type { Node, Edge } from "@xyflow/react";
+import type {
+  EntityData,
+  AttributeData,
+  RelationEdgeData,
+} from "../../../shared/model/types";
 
 // Interfaces for our mapping logic
 interface ColumnDef {
@@ -32,11 +37,10 @@ export function convertToRelational(
   const tablesMap = new Map<string, TableDef>();
 
   entities.forEach((entity) => {
+    const data = entity.data as EntityData;
     tablesMap.set(entity.id, {
       id: entity.id,
-      tableName: (String(entity.data.label || "") || "Entity")
-        .replace(/\s+/g, "_")
-        .toUpperCase(),
+      tableName: (data.label || "Entity").replace(/\s+/g, "_").toUpperCase(),
       columns: [],
       x: entity.position.x,
       y: entity.position.y,
@@ -45,13 +49,14 @@ export function convertToRelational(
 
   // 2. Procesar Atributos (se anidan a la entidad conectada como Columnas)
   attributes.forEach((attr) => {
+    const data = attr.data as AttributeData;
     // Buscar todas las aristas que tocan este atributo
     const connectedEdges = edges.filter(
       (e) => e.source === attr.id || e.target === attr.id,
     );
 
     connectedEdges.forEach((edge) => {
-      // El otro extremo debe ser una entidad (o una relación asumiendo atributos de relación, pero lo simplificamos a entidades)
+      // El otro extremo debe ser una entidad
       const otherNodeId = edge.source === attr.id ? edge.target : edge.source;
       const otherNode = nodes.find((n) => n.id === otherNodeId);
 
@@ -59,11 +64,9 @@ export function convertToRelational(
         const table = tablesMap.get(otherNode.id);
         if (table) {
           table.columns.push({
-            name: (String(attr.data.label || "") || "col")
-              .replace(/\s+/g, "_")
-              .toLowerCase(),
-            type: attr.data.isPrimaryKey ? "INT" : "VARCHAR(255)", // Tipo simple inferido
-            isPk: attr.data.isPrimaryKey === true,
+            name: (data.label || "col").replace(/\s+/g, "_").toLowerCase(),
+            type: data.isPrimaryKey ? "INT" : "VARCHAR(255)", // Tipo simple inferido
+            isPk: data.isPrimaryKey === true,
           });
         }
       }
@@ -99,16 +102,11 @@ export function convertToRelational(
       if (!tableA || !tableB) return;
 
       // Extract cardinalities. This is a heuristic based on user input on the edges connecting to the diamond
-      let cardA = String(
-        entA.edge.data?.targetCardinality ||
-          entA.edge.data?.sourceCardinality ||
-          "1",
-      );
-      let cardB = String(
-        entB.edge.data?.targetCardinality ||
-          entB.edge.data?.sourceCardinality ||
-          "1",
-      );
+      const dataA = entA.edge.data as RelationEdgeData | undefined;
+      const dataB = entB.edge.data as RelationEdgeData | undefined;
+
+      const cardA = dataA?.targetCardinality ?? dataA?.sourceCardinality ?? "1";
+      const cardB = dataB?.targetCardinality ?? dataB?.sourceCardinality ?? "1";
 
       const isMtoN =
         (cardA === "N" || cardA === "0..N") &&
@@ -124,13 +122,13 @@ export function convertToRelational(
         // Regla: Muchos a Muchos genera una nueva Tabla
         const joinTableName = `${tableA.tableName}_${tableB.tableName}`;
         const pkA =
-          tableA.columns.find((c) => c.isPk)?.name ||
+          tableA.columns.find((c) => c.isPk)?.name ??
           `${tableA.tableName.toLowerCase()}_id`;
         const pkB =
-          tableB.columns.find((c) => c.isPk)?.name ||
+          tableB.columns.find((c) => c.isPk)?.name ??
           `${tableB.tableName.toLowerCase()}_id`;
 
-        const newId = `table_${Date.now()}_${Math.random()}`;
+        const newId = `table_${String(Date.now())}_${String(Math.random())}`;
 
         tablesMap.set(newId, {
           id: newId,
@@ -148,7 +146,7 @@ export function convertToRelational(
         newEdges.push(createRelationEdge(tableB.id, newId, "1", "N"));
       } else if (is1toN) {
         // A es 1, B es N. La PK de A va a B como FK.
-        const pkA = tableA.columns.find((c) => c.isPk)?.name || "id";
+        const pkA = tableA.columns.find((c) => c.isPk)?.name ?? "id";
         tableB.columns.push({
           name: `${tableA.tableName.toLowerCase()}_${pkA}`,
           type: "INT",
@@ -157,7 +155,7 @@ export function convertToRelational(
         newEdges.push(createRelationEdge(tableA.id, tableB.id, "1", "N"));
       } else if (isNto1) {
         // B es 1, A es N. La PK de B va a A como FK.
-        const pkB = tableB.columns.find((c) => c.isPk)?.name || "id";
+        const pkB = tableB.columns.find((c) => c.isPk)?.name ?? "id";
         tableA.columns.push({
           name: `${tableB.tableName.toLowerCase()}_${pkB}`,
           type: "INT",
@@ -166,7 +164,7 @@ export function convertToRelational(
         newEdges.push(createRelationEdge(tableB.id, tableA.id, "1", "N"));
       } else {
         // 1 a 1: Generalmente se fusionan o la PK va de uno a otro. Lo trataremos como 1 a 1 físico
-        const pkA = tableA.columns.find((c) => c.isPk)?.name || "id";
+        const pkA = tableA.columns.find((c) => c.isPk)?.name ?? "id";
         tableB.columns.push({
           name: `${tableA.tableName.toLowerCase()}_${pkA}`,
           type: "INT",
@@ -205,7 +203,7 @@ function createRelationEdge(
   targetCard: string,
 ): Edge {
   return {
-    id: `e-${sourceId}-${targetId}-${Date.now()}`,
+    id: `e-${sourceId}-${targetId}-${String(Date.now())}`,
     source: sourceId,
     target: targetId,
     type: "relation",

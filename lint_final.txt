@@ -1,0 +1,76 @@
+
+> diagramjymd@0.0.0 lint
+> eslint .
+
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\edges\ui\RelationEdge.tsx
+  34:62  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  45:81  error  Passing a string to String() does not change the type or value of the string       @typescript-eslint/no-unnecessary-type-conversion
+  47:81  error  Passing a string to String() does not change the type or value of the string       @typescript-eslint/no-unnecessary-type-conversion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\store\diagramStore.ts
+  62:14  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  68:14  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  97:14  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\lib\relationalConverter.ts
+   37:26  error  'entity.data.label ?? ""' will use Object's default stringification format ('[object Object]') when stringified                                                                              @typescript-eslint/no-base-to-string
+   62:27  error  'attr.data.label ?? ""' will use Object's default stringification format ('[object Object]') when stringified                                                                                @typescript-eslint/no-base-to-string
+  103:9   error  'entA.edge.data?.targetCardinality ??
+          entA.edge.data?.sourceCardinality ??
+          "1"' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  108:9   error  'entB.edge.data?.targetCardinality ??
+          entB.edge.data?.sourceCardinality ??
+          "1"' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\model\useTransform.ts
+  13:7   error  Unsafe argument of type `any` assigned to a parameter of type `Node[]`     @typescript-eslint/no-unsafe-argument
+  13:16  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  14:7   error  Unsafe argument of type `any` assigned to a parameter of type `Edge[]`     @typescript-eslint/no-unsafe-argument
+  14:16  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  23:14  error  Unsafe argument of type `any` assigned to a parameter of type `AppNode[]`  @typescript-eslint/no-unsafe-argument
+  23:26  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  24:14  error  Unsafe argument of type `any` assigned to a parameter of type `AppEdge[]`  @typescript-eslint/no-unsafe-argument
+  24:26  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  30:16  error  Unsafe argument of type `any` assigned to a parameter of type `AppNode[]`  @typescript-eslint/no-unsafe-argument
+  30:33  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  31:16  error  Unsafe argument of type `any` assigned to a parameter of type `AppEdge[]`  @typescript-eslint/no-unsafe-argument
+  31:33  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\main.tsx
+  6:12  error  Forbidden non-null assertion  @typescript-eslint/no-non-null-assertion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\pages\editor\ui\EditorPage.tsx
+  108:28  error  Unsafe assignment of an `any` value       @typescript-eslint/no-unsafe-assignment
+  108:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  109:28  error  Unsafe assignment of an `any` value       @typescript-eslint/no-unsafe-assignment
+  109:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\pages\home\ui\HomeScreen.tsx
+  19:51   error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  19:128  error  Unsafe member access .type on an `any` value                               @typescript-eslint/no-unsafe-member-access
+  23:14   error  Unsafe argument of type `any` assigned to a parameter of type `AppNode[]`  @typescript-eslint/no-unsafe-argument
+  23:32   error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  24:14   error  Unsafe argument of type `any` assigned to a parameter of type `AppEdge[]`  @typescript-eslint/no-unsafe-argument
+  24:32   error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\shared\model\types.ts
+  53:65  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\properties\ui\PropertiesPanel.tsx
+   56:30  warning  Do not use item index in the array as its key                                                       react-x/no-array-index-key
+  163:22  error    Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  180:22  error    Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  215:34  error    Unexpected any. Specify a different type                                                            @typescript-eslint/no-explicit-any
+  215:39  error    Unsafe member access .label on an `any` value                                                       @typescript-eslint/no-unsafe-member-access
+  323:75  error    Passing a string to String() does not change the type or value of the string                        @typescript-eslint/no-unnecessary-type-conversion
+  323:82  error    Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  328:32  error    This assertion is unnecessary since it does not change the type of the expression                   @typescript-eslint/no-unnecessary-type-assertion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\sidebar\ui\Sidebar.tsx
+  24:13  error  Unsafe argument of type `any` assigned to a parameter of type `AppNode`  @typescript-eslint/no-unsafe-argument
+  29:10  error  Unexpected any. Specify a different type                                 @typescript-eslint/no-explicit-any
+
+Ô£û 44 problems (43 errors, 1 warning)
+  5 errors and 0 warnings potentially fixable with the `--fix` option.
+

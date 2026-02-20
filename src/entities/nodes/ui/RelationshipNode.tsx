@@ -1,6 +1,7 @@
 import { Handle, Position } from '@xyflow/react';
+import type { RelationshipData } from '../../../shared/model/types';
 
-export function RelationshipNode({ data, selected }: { data: any, selected: boolean }) {
+export function RelationshipNode({ data, selected }: { data: RelationshipData, selected: boolean }) {
   return (
     <div className={`
       relative min-w-[120px] h-[80px] flex items-center justify-center transition-all

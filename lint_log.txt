@@ -1,0 +1,162 @@
+
+> diagramjymd@0.0.0 lint
+> eslint .
+
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\edges\ui\RelationEdge.tsx
+  30:62  error  This assertion is unnecessary since it does not change the type of the expression                          @typescript-eslint/no-unnecessary-type-assertion
+  35:59  error  Invalid type "number" of template literal expression                                                       @typescript-eslint/restrict-template-expressions
+  35:71  error  Invalid type "number" of template literal expression                                                       @typescript-eslint/restrict-template-expressions
+  41:46  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator  @typescript-eslint/prefer-nullish-coalescing
+  45:46  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator  @typescript-eslint/prefer-nullish-coalescing
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\entities\store\diagramStore.ts
+  31:38  error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  33:38  error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  44:25  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  45:24  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  46:24  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  47:30  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  48:30  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  52:14  error  This assertion is unnecessary since it does not change the type of the expression                                   @typescript-eslint/no-unnecessary-type-assertion
+  58:14  error  This assertion is unnecessary since it does not change the type of the expression                                   @typescript-eslint/no-unnecessary-type-assertion
+  77:57  error  Invalid type "number" of template literal expression                                                                @typescript-eslint/restrict-template-expressions
+  87:14  error  This assertion is unnecessary since it does not change the type of the expression                                   @typescript-eslint/no-unnecessary-type-assertion
+  99:29  error  Unsafe assignment of an `any` value                                                                                 @typescript-eslint/no-unsafe-assignment
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\lib\relationalConverter.ts
+   37:26  error  'entity.data.label || ""' will use Object's default stringification format ('[object Object]') when stringified                                                                              @typescript-eslint/no-base-to-string
+   37:44  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+   62:27  error  'attr.data.label || ""' will use Object's default stringification format ('[object Object]') when stringified                                                                                @typescript-eslint/no-base-to-string
+   62:43  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  102:11  error  'cardA' is never reassigned. Use 'const' instead                                                                                                                                             prefer-const
+  103:9   error  'entA.edge.data?.targetCardinality ||
+          entA.edge.data?.sourceCardinality ||
+          "1"' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  103:43  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  104:45  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  107:11  error  'cardB' is never reassigned. Use 'const' instead                                                                                                                                             prefer-const
+  108:9   error  'entB.edge.data?.targetCardinality ||
+          entB.edge.data?.sourceCardinality ||
+          "1"' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  108:43  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  109:45  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  127:52  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  130:52  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  133:32  error  Invalid type "number" of template literal expression                                                                                                                                         @typescript-eslint/restrict-template-expressions
+  133:46  error  Invalid type "number" of template literal expression                                                                                                                                         @typescript-eslint/restrict-template-expressions
+  151:62  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  160:62  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  169:62  error  Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator                                                                                    @typescript-eslint/prefer-nullish-coalescing
+  208:38  error  Invalid type "number" of template literal expression                                                                                                                                         @typescript-eslint/restrict-template-expressions
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\features\diagram-transform\model\useTransform.ts
+  13:7   error  Unsafe argument of type `any` assigned to a parameter of type `Node[]`     @typescript-eslint/no-unsafe-argument
+  13:16  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  14:7   error  Unsafe argument of type `any` assigned to a parameter of type `Edge[]`     @typescript-eslint/no-unsafe-argument
+  14:16  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  23:14  error  Unsafe argument of type `any` assigned to a parameter of type `AppNode[]`  @typescript-eslint/no-unsafe-argument
+  23:26  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  24:14  error  Unsafe argument of type `any` assigned to a parameter of type `AppEdge[]`  @typescript-eslint/no-unsafe-argument
+  24:26  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  30:16  error  Unsafe argument of type `any` assigned to a parameter of type `AppNode[]`  @typescript-eslint/no-unsafe-argument
+  30:33  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+  31:16  error  Unsafe argument of type `any` assigned to a parameter of type `AppEdge[]`  @typescript-eslint/no-unsafe-argument
+  31:33  error  Unexpected any. Specify a different type                                   @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\main.tsx
+  6:12  error  Forbidden non-null assertion  @typescript-eslint/no-non-null-assertion
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\pages\editor\ui\EditorPage.tsx
+  27:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  28:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  29:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\pages\home\ui\HomeScreen.tsx
+   19:56   error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   19:113  error  Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+   19:115  error  Unsafe member access .type on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+   23:14   error  Unsafe argument of type `any` assigned to a parameter of type `AppNode[]`                                           @typescript-eslint/no-unsafe-argument
+   23:32   error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   24:14   error  Unsafe argument of type `any` assigned to a parameter of type `AppEdge[]`                                           @typescript-eslint/no-unsafe-argument
+   24:32   error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   56:28   error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   76:28   error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  125:36   error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\shared\model\types.ts
+  53:65  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\properties\ui\PropertiesPanel.tsx
+    5:42  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+    7:21  error    Unsafe member access .data on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+   10:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+   10:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+   16:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+   16:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+   20:46  error    Invalid type "number" of template literal expression                                                                @typescript-eslint/restrict-template-expressions
+   21:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+   21:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+   26:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+   26:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+   56:23  warning  Do not use item index in the array as its key                                                                       react-x/no-array-index-key
+   58:32  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   67:34  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   75:36  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  108:41  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  109:40  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  117:41  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  118:40  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  133:42  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  135:22  error    Unsafe member access .data on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+  135:27  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  138:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+  138:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+  142:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+  142:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+  197:48  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  199:21  error    Unsafe member access .data on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+  202:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+  202:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+  206:20  error    Unsafe argument of type `any` assigned to a parameter of type `string`                                              @typescript-eslint/no-unsafe-argument
+  206:25  error    Unsafe member access .id on an `any` value                                                                          @typescript-eslint/no-unsafe-member-access
+  215:18  error    Unsafe assignment of an `any` value                                                                                 @typescript-eslint/no-unsafe-assignment
+  215:27  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  215:32  error    Unsafe member access .label on an `any` value                                                                       @typescript-eslint/no-unsafe-member-access
+  221:13  error    Unsafe member access .type on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+  225:50  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  226:30  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  233:13  error    Unsafe member access .type on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+  238:61  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  239:32  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  247:62  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  248:32  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  256:58  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  257:32  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  265:13  error    Unsafe member access .type on an `any` value                                                                        @typescript-eslint/no-unsafe-member-access
+  269:63  error    Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator           @typescript-eslint/prefer-nullish-coalescing
+  270:30  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  323:75  error    This assertion is unnecessary since it does not change the type of the expression                                   @typescript-eslint/no-unnecessary-type-assertion
+  323:75  error    Forbidden non-null assertion                                                                                        @typescript-eslint/no-non-null-assertion
+  335:28  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  343:28  error    Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+
+C:\Users\yufar\ProyectosReact\DiagramJymd\src\widgets\sidebar\ui\Sidebar.tsx
+   18:92  error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   24:13  error  Unsafe argument of type `any` assigned to a parameter of type `AppNode`                                             @typescript-eslint/no-unsafe-argument
+   25:22  error  Invalid type "number" of template literal expression                                                                @typescript-eslint/restrict-template-expressions
+   28:7   error  Unsafe assignment of an `any` value                                                                                 @typescript-eslint/no-unsafe-assignment
+   29:10  error  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   39:28  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   56:28  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   64:28  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   72:28  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+   94:24  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  104:24  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  112:24  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+
+Ô£û 130 problems (129 errors, 1 warning)
+  34 errors and 0 warnings potentially fixable with the `--fix` option.
+

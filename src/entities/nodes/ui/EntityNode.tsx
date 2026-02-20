@@ -1,6 +1,7 @@
 import { Handle, Position } from '@xyflow/react';
+import type { EntityData } from '../../../shared/model/types';
 
-export function EntityNode({ data, selected }: { data: any, selected: boolean }) {
+export function EntityNode({ data, selected }: { data: EntityData, selected: boolean }) {
   return (
     <div className={`
       relative min-w-[120px] px-4 py-3 bg-slate-800 border-2 rounded-sm shadow-md transition-all

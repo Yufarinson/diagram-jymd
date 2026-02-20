@@ -1,19 +1,8 @@
 import { Handle, Position } from '@xyflow/react';
 import { Database, Key, Hash, Link } from 'lucide-react';
+import type { TableData } from '../../../shared/model/types';
 
-export interface ColumnData {
-  name: string;
-  type: string;
-  isPk?: boolean;
-  isFk?: boolean;
-}
-
-export interface TableNodeData {
-  tableName: string;
-  columns: ColumnData[];
-}
-
-export function TableNode({ data, isConnectable }: { data: TableNodeData; isConnectable: boolean }) {
+export function TableNode({ data, isConnectable }: { data: TableData; isConnectable: boolean }) {
   return (
     <div className="bg-slate-900/80 backdrop-blur-xl min-w-[320px] rounded-2xl border border-slate-700/60 shadow-2xl text-slate-200 font-sans transition-all hover:border-indigo-500/50 hover:shadow-indigo-500/20">
       {/* Header */}
